@@ -12,4 +12,13 @@ public class Gosc extends Osoba {
         super(osoba.imie,osoba.nazwisko);
         this.dataOdwiedzin = dataOdwiedzin;
     }
+
+    @Override
+    public String toString() {
+        return "Gosc{" +
+                "dataOdwiedzin='" + dataOdwiedzin + '\'' +
+                ", imie='" + imie + '\'' +
+                ", nazwisko='" + nazwisko + '\'' +
+                '}';
+    }
 }

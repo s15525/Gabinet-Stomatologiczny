@@ -40,10 +40,13 @@ public class Klient extends Osoba {
 
     @Override
     public String toString() {
-        return "diagramClass.Klient{" +
+        return "Klient{" +
                 "dataurodzenia='" + dataurodzenia + '\'' +
                 ", pesel='" + pesel + '\'' +
                 ", numeryTelefonu=" + numeryTelefonu +
+                ", zabs=" + zabs +
+                ", imie='" + imie + '\'' +
+                ", nazwisko='" + nazwisko + '\'' +
                 '}';
     }
 

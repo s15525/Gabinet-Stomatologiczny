@@ -16,7 +16,7 @@ public class Main2 {
         //Asocjacja kwalfikowana
 
         //Kompozycja
-        Klient adam = new Klient("13.08.1997","972394234324",new ArrayList<>(){{add("787888787");}});
+        Klient adam = new Klient("Marek","Piekarczuk","13.08.1997","972394234324",new ArrayList<>(){{add("787888787");}});
         adam.createZab("Dobry",2,"Dobry","czarny");
     }
 }

@@ -1,5 +1,8 @@
 package test;
 
+import diagramClass.Gosc;
+import diagramClass.Klient;
+import diagramClass.Osoba;
 import diagramClass.Pracownik;
 
 import java.util.ArrayList;
@@ -13,6 +16,13 @@ public class Main3 {
             add("Stomatologia ogolna");
         }}, 300.0,new int[]{1});
 
+        //Dziedziczenie dynamiczne
+        Osoba marek = new Gosc("Marek","Pawlowski","18.12.2000");
+        System.out.println(marek);
+
+        marek = new Klient(marek,"23.08.1997","977997979797",new ArrayList<>(){{add("7878878787");}});
+        System.out.println(marek);
+        //Dziedziczenie wieloaspektowe
 
     }
 }
