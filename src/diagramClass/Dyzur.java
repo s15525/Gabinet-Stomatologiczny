@@ -3,7 +3,7 @@ package diagramClass;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Dyzur {
+public class Dyzur extends ObjectPlusPlus{
     private int id;
     private String dataDyzuru;
     private int czasTrwania;

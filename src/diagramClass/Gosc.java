@@ -1,6 +1,7 @@
 package diagramClass;
 
 public class Gosc extends Osoba {
+    //ograniczenie atrybutu
     private String dataOdwiedzin;
 
     public Gosc(String imie, String nazwisko, String dataOdwiedzin) {
@@ -15,6 +16,10 @@ public class Gosc extends Osoba {
 
     public String getData() {
         return "Data odwiedzin " + dataOdwiedzin;
+    }
+
+    public void setDataOdwiedzin(String dataOdwiedzin) {
+        this.dataOdwiedzin = dataOdwiedzin;
     }
 
     @Override
