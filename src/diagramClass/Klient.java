@@ -1,30 +1,36 @@
 package diagramClass;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class Klient extends Osoba {
     //Dziedziczenie dynamiczne
     public String dataurodzenia;
-    public String pesel;
-    //atrybut powtarzalny;
+    //unique
+    String pesel;
+    //atrybut powtarzalny
     public List<String> numeryTelefonu;
     private List<Zab> zabs = new ArrayList<>();
+    private static List<Klient> extent = new ArrayList<>();
 
     public Klient(String imie, String nazwisko, String dataurodzenia, String pesel, List<String> numeryTelefonu) {
         super(imie, nazwisko);
-
         this.dataurodzenia = dataurodzenia;
-        this.pesel = pesel;
         this.numeryTelefonu = numeryTelefonu;
+        this.pesel = pesel;
+        extent.add(this);
+        checkPeselExistsInExtent(pesel);
     }
 
     public Klient(Osoba osoba, String dataurodzenia, String pesel, List<String> numeryTelefonu) {
         super(osoba.imie, osoba.nazwisko);
-
         this.dataurodzenia = dataurodzenia;
-        this.pesel = pesel;
         this.numeryTelefonu = numeryTelefonu;
+        this.pesel = pesel;
+        extent.add(this);
+        checkPeselExistsInExtent(pesel);
     }
 
     public Zab createZab(String stanOgolny, int ilosc, String zapach, String kolor) {
@@ -32,10 +38,16 @@ public class Klient extends Osoba {
         zabs.add(zab);
         return zab;
     }
-
+    public void checkPeselExistsInExtent(String pesel){
+        for (int i = 0; i < extent.size()-1; i++) {
+           if(extent.get(i).pesel.equals(pesel)){
+               extent.remove(extent.size()-1);
+           }
+        }
+    }
     //Przesloniecie metod
     public String getData() {
-        return dataurodzenia;
+        return "Data urodzenia "+ dataurodzenia;
     }
 
     @Override
@@ -45,8 +57,6 @@ public class Klient extends Osoba {
                 ", pesel='" + pesel + '\'' +
                 ", numeryTelefonu=" + numeryTelefonu +
                 ", zabs=" + zabs +
-                ", imie='" + imie + '\'' +
-                ", nazwisko='" + nazwisko + '\'' +
                 '}';
     }
 
@@ -62,7 +72,6 @@ public class Klient extends Osoba {
             this.zapach = zapach;
             this.kolor = kolor;
         }
-
         @Override
         public String toString() {
             return "Zab{" +
@@ -72,5 +81,12 @@ public class Klient extends Osoba {
                     ", kolor='" + kolor + '\'' +
                     '}';
         }
+
     }
+
+    public void showKlientExtent() {
+        System.out.println(Klient.class.getName());
+        extent.forEach(System.out::println);
+    }
+
 }

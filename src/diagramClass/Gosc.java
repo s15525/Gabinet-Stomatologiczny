@@ -13,6 +13,10 @@ public class Gosc extends Osoba {
         this.dataOdwiedzin = dataOdwiedzin;
     }
 
+    public String getData() {
+        return "Data odwiedzin " + dataOdwiedzin;
+    }
+
     @Override
     public String toString() {
         return "Gosc{" +
