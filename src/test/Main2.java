@@ -5,7 +5,7 @@ import java.util.ArrayList;
 public class Main2 {
     public static void main(String[] args){
         //Asocjacja binarna diagramClass.Wizyta-dyzur
-        Wizyta wizyta = new Wizyta(1,06, 04, 2020, "08:30", "19:00", 20.00, new int[]{1});
+        Wizyta wizyta = new Wizyta(06, 04, 2020, "08:30", "19:00", 20.00, new int[]{1},1);
         Dyzur dyzur = new Dyzur(1,"18.08.19",60,3,new int[]{1},new int[]{1});
         //Asocjacja z parametrem diagramClass.Dyzur-diagramClass.Stomatolog
         DyzurStomatolog dyzurStomatolog = new DyzurStomatolog(1,1,200);
@@ -13,6 +13,9 @@ public class Main2 {
             add("Stomatologia ogolna");
         }}, 300.0,new int[]{1});
 
+        wizyta.setKoszt();
+
+        System.out.println("Koszt wizyty" + wizyta.getKoszt());
         //Asocjacja kwalfikowana
 
         //Kompozycja

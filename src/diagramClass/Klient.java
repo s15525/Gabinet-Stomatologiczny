@@ -33,6 +33,35 @@ public class Klient extends Osoba {
         checkPeselExistsInExtent(pesel);
     }
 
+    public String getDataurodzenia() {
+        return dataurodzenia;
+    }
+
+    public void setDataurodzenia(String dataurodzenia) {
+        this.dataurodzenia = dataurodzenia;
+    }
+
+    public String getPesel() {
+        return pesel;
+    }
+
+    public void setPesel(String pesel) {
+        this.pesel = pesel;
+    }
+
+    public String getNumeryTelefonu() {
+        String result = "";
+        for (String a:
+             numeryTelefonu) {
+            result += a +"\n";
+        }
+        return result;
+    }
+
+    public void setNumeryTelefonu(List<String> numeryTelefonu) {
+        this.numeryTelefonu = numeryTelefonu;
+    }
+
     public Zab createZab(String stanOgolny, int ilosc, String zapach, String kolor) {
         Zab zab = new Zab(stanOgolny, ilosc, zapach, kolor);
         zabs.add(zab);

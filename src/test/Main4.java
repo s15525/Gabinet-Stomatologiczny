@@ -8,6 +8,7 @@ public class Main4 {
     public static void main(String[] args){
         //Atrybut
         Gosc kamil = new Gosc("Kamil","Karolak","13.08.1998");
+        kamil.setDataOdwiedzin("13.09.2200");
         System.out.println(kamil);
         kamil.setDataOdwiedzin("13.09.2019");
         System.out.println(kamil);

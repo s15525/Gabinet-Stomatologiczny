@@ -2,7 +2,6 @@ package diagramClass;
 
 public class Wizyta {
     //atrybut zlozony
-    private int id;
     private int dzienMiesiaca;
     private int miesiac;
     private int rok;
@@ -15,9 +14,9 @@ public class Wizyta {
     private String opis;
     //Zwykla asocjacja binarna
     public int[] dyzurIds;
+    public int klientIds;
 
-    public Wizyta(int id,int dzienMiesiaca, int miesiac, int rok, String godzina_rozpoczecia, String godzina_zakonczenia, double koszt,int[] dyzurIds) {
-        this.id = id;
+    public Wizyta(int dzienMiesiaca, int miesiac, int rok, String godzina_rozpoczecia, String godzina_zakonczenia, double koszt,int[] dyzurIds,int klientIds) {
         this.dzienMiesiaca = dzienMiesiaca;
         this.miesiac = miesiac;
         this.rok = rok;
@@ -27,6 +26,7 @@ public class Wizyta {
         this.dataWizyty = dzienMiesiaca + "." + miesiac + "." + rok;
 
         this.dyzurIds = dyzurIds;
+        this.klientIds= klientIds;
     }
 
     public int getDzienMiesiaca() {
@@ -57,10 +57,6 @@ public class Wizyta {
         return koszt;
     }
 
-    public int getId() {
-        return id;
-    }
-
     public String getDyzurIds() {
         String dyzurIdsString = null;
         for (int i = 0; i< dyzurIds.length ; i++){
@@ -69,8 +65,21 @@ public class Wizyta {
         return dyzurIdsString;
     }
 
+    public int getKlientIds() {
+        return klientIds;
+    }
+
     public void setOpis(String opis) {
         this.opis = opis;
+    }
+
+    public void setKoszt(){
+        String[] godzRoz = godzina_rozpoczecia.split(":");
+        String[] godzZak = godzina_zakonczenia.split(":");
+
+        int rGodz = Integer.parseInt(godzZak[0]) - Integer.parseInt(godzRoz[0]) ;
+
+        this.koszt = 50.0 * rGodz;
     }
 
     //Atrybut pochodny

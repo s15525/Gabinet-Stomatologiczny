@@ -6,4 +6,9 @@ public class Mezczyzna extends Osoba.Plec {
     public Mezczyzna(String nazwiskorodoweMatki) {
         this.nazwiskorodoweMatki = nazwiskorodoweMatki;
     }
+
+
+    public String getNazwiskorodoweMatki() {
+        return nazwiskorodoweMatki;
+    }
 }

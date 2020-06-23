@@ -12,6 +12,8 @@ public abstract class ObjectPlusPlus extends ObjectPlus implements Serializable 
     /** Stores information about all parts connected with any objects. */
     private static Set<ObjectPlusPlus> allParts = new HashSet<>();
 
+    private List<String> rolesXOR = new LinkedList<>();
+
     ObjectPlusPlus() {
         super();
     }

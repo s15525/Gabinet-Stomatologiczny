@@ -9,10 +9,10 @@ public class Main {
         //ekstencja
         WizytaExtent wizytaExtent = new WizytaExtent();
 
-        Wizyta wizyta = new Wizyta(1, 06, 04, 2020, "08:30", "19:00", 20.00, new int[]{});
+        Wizyta wizyta = new Wizyta(06, 04, 2020, "08:30", "19:00", 20.00, new int[]{}, 1);
         wizytaExtent.addWizyta(wizyta);
 
-        Wizyta wizyta2 = new Wizyta(1, 07, 04, 2020, "12:30", "19:00", 100.00, new int[]{});
+        Wizyta wizyta2 = new Wizyta(07, 04, 2020, "12:30", "19:00", 100.00, new int[]{}, 2);
         wizytaExtent.addWizyta(wizyta2);
         System.out.println();
 

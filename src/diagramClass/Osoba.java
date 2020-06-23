@@ -9,6 +9,8 @@ public abstract class Osoba {
     //Dziedziczenie dynamiczne
     protected String imie;
     protected String nazwisko;
+    private String plecKto;
+    private String informacjaDodatkowa;
     private List<Plec> plecs = new ArrayList<>();
 
     public Osoba(String imie, String nazwisko) {
@@ -18,13 +20,52 @@ public abstract class Osoba {
 
     public Plec setKobieta(String nazwiskoPanienskie){
             Plec plec = new Kobieta(nazwiskoPanienskie);
+            plecKto = "kobieta";
+            informacjaDodatkowa = nazwiskoPanienskie;
             plecs.add(plec);
             return plec;
     }
     public Plec setMezczyzna(String nazwiskoRodoweMatki){
         Plec plec = new Mezczyzna(nazwiskoRodoweMatki);
+        plecKto = "mezczyzna";
+        informacjaDodatkowa = nazwiskoRodoweMatki;
         plecs.add(plec);
         return plec;
+    }
+
+    public String getImie() {
+        return imie;
+    }
+
+    public String getNazwisko() {
+        return nazwisko;
+    }
+    public List<Plec> getPlecs() {
+        return plecs;
+    }
+
+    public String getPlecKto() {
+        return plecKto;
+    }
+
+    public void setImie(String imie) {
+        this.imie = imie;
+    }
+
+    public void setNazwisko(String nazwisko) {
+        this.nazwisko = nazwisko;
+    }
+
+    public void setPlecKto(String plecKto) {
+        this.plecKto = plecKto;
+    }
+
+    public String getInformacjaDodatkowa() {
+        return informacjaDodatkowa;
+    }
+
+    public void setInformacjaDodatkowa(String informacjaDodatkowa) {
+        this.informacjaDodatkowa = informacjaDodatkowa;
     }
 
     public String getData() {

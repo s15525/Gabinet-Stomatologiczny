@@ -7,4 +7,7 @@ public class Kobieta extends Osoba.Plec{
         this.nazwiskoPanienskie = nazwiskoPanienskie;
     }
 
+    public String getNazwiskoPanienskie() {
+        return nazwiskoPanienskie;
+    }
 }
