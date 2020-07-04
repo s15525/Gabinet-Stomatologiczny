@@ -68,10 +68,8 @@ public class KlientExtent {
 
     public void getState() {
         try {
-            // create a mysql database connection
-//            String myDriver = "com.mysql.jdbc.Driver";
+
             String myUrl = "jdbc:mysql://localhost:3306/stomatolog?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
-//            Class.forName(myDriver);
             Connection conn = DriverManager.getConnection(myUrl, "root", "Admin123@");
             // the mysql insert statement
             String query = " SELECT `imie`, `nazwisko`, `dataUrodzenia`,`pesel`,`nrTelefonu`,`plec`,`informacjaDodatkowa` FROM Klient";
@@ -109,5 +107,31 @@ public class KlientExtent {
             System.err.println("Got an exception!");
             System.err.println(e.getMessage());
         }
+    }
+
+    public int getIdKlient(String imie,String nazwisko){
+        int idKlient = -1;
+
+        try {
+
+            String myUrl = "jdbc:mysql://localhost:3306/stomatolog?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
+            Connection conn = DriverManager.getConnection(myUrl, "root", "Admin123@");
+            // the mysql insert statement
+            String query = " SELECT `IdKlient` FROM Klient WHERE `imie` = '" + imie +"' AND `nazwisko` = '"+nazwisko +"'";
+
+            // create the mysql insert preparedstatement
+            PreparedStatement preparedStmt = conn.prepareStatement(query);
+            ResultSet rs = preparedStmt.executeQuery();
+
+            while (rs.next()) {
+                idKlient = rs.getInt(1);
+            }
+
+            conn.close();
+        } catch (Exception e) {
+            System.err.println("Got an exception!");
+            System.err.println(e.getMessage());
+        }
+        return idKlient;
     }
 }

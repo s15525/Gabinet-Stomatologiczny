@@ -17,27 +17,14 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 public class MainWindow extends Application {
-    private TableView<KlientTable> osobaTableView = new TableView<KlientTable>();
-    private Button wyswietlWizyty = new Button("Wyswietl wizyty");
-    private final ObservableList<KlientTable> data =
-            FXCollections.observableArrayList(
-//                    new KlientTable("Norbert","Gierczak","18-18-2424","255235325325235","2421525252")
-                    //new Klient("Norbert","Gierczak", "23.08.1997", "977997979797", new ArrayList<>() {{
-                    //            add("7878878787");
-                    //            }});
-            );
+    private TableView<KlientTable> klientTableView = new TableView<KlientTable>();
+    private Button wyswietlWizyty = new Button("Wyswietl szczegóły wizyty");
+    private final ObservableList<KlientTable> data = FXCollections.observableArrayList();
     private final HBox hb = new HBox();
     private KlientExtent klientExtentExist = new KlientExtent();
-    private KlientExtent klientExtentNew = new KlientExtent();
 
     public static void main(String[] args) {
         launch(args);
-    }
-
-    @Override
-    public void stop() throws Exception {
-        klientExtentNew.saveState();
-        super.stop();
     }
 
     @Override
@@ -49,7 +36,7 @@ public class MainWindow extends Application {
         primaryStage.setHeight(500);
         final Label label = new Label("Lista klientow");
 
-        osobaTableView.setEditable(true);
+        klientTableView.setEditable(true);
 
 
         TableColumn imie = new TableColumn("imie");
@@ -81,10 +68,10 @@ public class MainWindow extends Application {
         }
 
 
-        osobaTableView.setItems(data);
-        osobaTableView.getColumns().addAll(imie, nazwisko, dataUrodzenia,pesel,nrtelefonu);
+        klientTableView.setItems(data);
+        klientTableView.getColumns().addAll(imie, nazwisko, dataUrodzenia,pesel,nrtelefonu);
 
-        scrollPane.setContent(osobaTableView);
+        scrollPane.setContent(klientTableView);
         scrollPane.setHbarPolicy(ScrollPane.ScrollBarPolicy.AS_NEEDED);
         scrollPane.setVbarPolicy(ScrollPane.ScrollBarPolicy.AS_NEEDED);
         scrollPane.setFitToHeight(true);
@@ -97,22 +84,41 @@ public class MainWindow extends Application {
             @Override
             public void handle(ActionEvent event) {
                 Klient newKlient = RegisterClientWindow.display();
-                klientExtentNew.addKlient(newKlient);
                 if (newKlient != null) {
+                    KlientExtent klientExtentNew = new KlientExtent();
+                    klientExtentNew.addKlient(newKlient);
+                    klientExtentNew.saveState();
                     KlientTable klientTable = new KlientTable(newKlient.getImie(), newKlient.getNazwisko(), newKlient.getDataurodzenia(), newKlient.getPesel(), newKlient.getNumeryTelefonu());
                     data.add(klientTable);
+                    if (PeselCheckWindow.peselCheckDisplay()){
+                        ProgressBarPodtwierdzenie.processBarDisplay();
+                        SignAtWizytaWindow.displaySingAtWizyta(klientExtentNew.getIdKlient(newKlient.getImie(),newKlient.getNazwisko()));
+                    }else {
+                        Alert.alertDisplay("Uwaga pacjent nie posiada ubezpieczenia zdrowotnego");
+                        SignAtWizytaWindow.displaySingAtWizyta(klientExtentNew.getIdKlient(newKlient.getImie(),newKlient.getNazwisko()));
+                    }
                 }
+            }
+
+        });
+
+        wyswietlWizyty.setOnAction(event -> {
+            klientExtentExist.getState();
+            try {
+                KlientTable klientTable = klientTableView.getItems().get(klientTableView.getSelectionModel().getFocusedIndex());
+                ShowWizytaWindow.showWizytaDisplay(klientExtentExist.getIdKlient(klientTable.getImie(),klientTable.getNazwisko()));
+            } catch (Exception e) {
+               Alert.alertDisplay("Klient nie jest zapisany na zadana wizyte");
             }
         });
 
-        wyswietlWizyty.setOnAction(event -> ProgressBarPodtwierdzenie.processBarDisplay());
-
         hb.getChildren().addAll(wyswietlWizyty,addKlientButton);
         hb.setAlignment(Pos.CENTER_RIGHT);
+        hb.setSpacing(20);
 
         final VBox vbox = new VBox();
         vbox.setSpacing(5);
-        vbox.getChildren().addAll(label, osobaTableView, hb);
+        vbox.getChildren().addAll(label, klientTableView, hb);
 
         ((Group) scene.getRoot()).getChildren().addAll(vbox);
 

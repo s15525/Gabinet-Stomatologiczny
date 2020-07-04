@@ -22,8 +22,6 @@ public class Stomatolog extends ObjectPlusPlus {
         return pensja;
     }
     //Przesloniecie metod
-
-
     public String getData() {
         return dataZatrudnienia;
     }

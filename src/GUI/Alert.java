@@ -17,7 +17,7 @@ public class Alert {
         window.initModality(Modality.APPLICATION_MODAL);
         window.setTitle("Alert");
         window.setHeight(100);
-        window.setWidth(300);
+        window.setWidth(350);
 
         Label label = new Label(message);
         Label spacer = new Label();

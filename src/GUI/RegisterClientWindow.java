@@ -25,7 +25,7 @@ public class RegisterClientWindow {
         Stage window = new Stage();
         window.initModality(Modality.APPLICATION_MODAL);
         window.setTitle("Dodaj klienta");
-        window.setHeight(600);
+        window.setHeight(500);
         window.setWidth(500);
 
         Label imieLabel = new Label("Imie");
@@ -78,13 +78,11 @@ public class RegisterClientWindow {
 
         if (klientReturn) {
             Klient newKlient = new Klient(imie.getText(), nazwisko.getText(), dataurodzenia.getText(), pesel.getText(), phoneNumberList);
-
             if (comboBoxPlec.getValue().equals("Mezczyzna")){
                 newKlient.setMezczyzna(informacjeDodatkowe.getText());
             }else {
                 newKlient.setKobieta(informacjeDodatkowe.getText());
             }
-
             return newKlient;
         }else {
             return null;

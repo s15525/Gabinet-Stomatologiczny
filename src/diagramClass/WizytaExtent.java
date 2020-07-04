@@ -39,7 +39,8 @@ public class WizytaExtent {
             for (Wizyta wizyta :
                     extentWizyta) {
                 // the mysql insert statement
-                String query = " insert into Wizyta (`date`, `godzina_rozpoczecia`, `godzina_zakonczenia`, `koszt`, `IdDyzury`,`IdKlient`)"
+                String query = " insert into Wizyta (`date`, `godzina_rozpoczecia`, " +
+                        "`godzina_zakonczenia`, `koszt`, `IdDyzury`,`IdKlient`)"
                         + " values (?, ?, ?, ?, ?, ?)";
 
                 // create the mysql insert preparedstatement
@@ -70,7 +71,7 @@ public class WizytaExtent {
 //            Class.forName(myDriver);
             Connection conn = DriverManager.getConnection(myUrl, "root", "Admin123@");
             // the mysql insert statement
-            String query = " SELECT * FROM WIZYTA";
+            String query = " SELECT `date`,`godzina_rozpoczecia`,`godzina_zakonczenia`,`koszt`,`IdKlient` FROM WIZYTA";
 
             // create the mysql insert preparedstatement
             PreparedStatement preparedStmt = conn.prepareStatement(query);
@@ -82,12 +83,10 @@ public class WizytaExtent {
                String godzina_rozpoczecia = rs.getString(2);
                String godzina_zakonczenia = rs.getString(3);
                double koszt = rs.getDouble(4);
-               String idDyzury = rs.getString(5);
-               int idKlient = rs.getInt(6);
-
-               String[] tab = data.split(".");
-
-               extentWizyta.add(new Wizyta(Integer.parseInt(tab[0]),Integer.parseInt(tab[1]),Integer.parseInt(tab[2]),godzina_rozpoczecia,godzina_zakonczenia,koszt,new int[]{},idKlient));
+               int idKlient = rs.getInt(5);
+               String[] tab = data.split("\\.");
+               extentWizyta.add(new Wizyta(Integer.parseInt(tab[0]),Integer.parseInt(tab[1]),
+                       Integer.parseInt(tab[2]),godzina_rozpoczecia,godzina_zakonczenia,koszt,new int[]{},idKlient));
             }
             // execute the preparedstatement
 
@@ -95,7 +94,7 @@ public class WizytaExtent {
             conn.close();
         } catch (Exception e) {
             System.err.println("Got an exception!");
-            System.err.println(e.getMessage());
+            System.err.println(e);
         }
     }
 
