@@ -13,3 +13,4 @@ Ma również pomóc stomatologom w analizie miesiąca pod względem dochodowym i
 System będzie miał za zadanie rejestrować pacjentów, sporządzał  raport, przechowywał dane pacjentów, wysyłał sprawozdanie do Narodowego Funduszu zdrowia. System będzie przechowywał również dane asystentów i stomatologów pracujących w przychodni 
 jak również jej pracowników. Oraz pod koniec miesiąca przeprowadza analizę miesiąca pod względem popularności i przychodów. Klienci mogą sprawdzić stan swojego konto w gabinecie.
 
+[Class Diagram](https://imgur.com/x3N5BdT)
