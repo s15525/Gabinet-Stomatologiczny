@@ -5,7 +5,7 @@ import java.util.List;
 
 //klasa abstrakcyjna
 
-public abstract class Osoba {
+public abstract class Person {
     //Dziedziczenie dynamiczne
     protected String imie;
     protected String nazwisko;
@@ -13,20 +13,20 @@ public abstract class Osoba {
     private String informacjaDodatkowa;
     private List<Plec> plecs = new ArrayList<>();
 
-    public Osoba(String imie, String nazwisko) {
+    public Person(String imie, String nazwisko) {
         this.imie = imie;
         this.nazwisko = nazwisko;
     }
 
     public Plec setKobieta(String nazwiskoPanienskie){
-            Plec plec = new Kobieta(nazwiskoPanienskie);
+            Plec plec = new Women(nazwiskoPanienskie);
             plecKto = "kobieta";
             informacjaDodatkowa = nazwiskoPanienskie;
             plecs.add(plec);
             return plec;
     }
     public Plec setMezczyzna(String nazwiskoRodoweMatki){
-        Plec plec = new Mezczyzna(nazwiskoRodoweMatki);
+        Plec plec = new Man(nazwiskoRodoweMatki);
         plecKto = "mezczyzna";
         informacjaDodatkowa = nazwiskoRodoweMatki;
         plecs.add(plec);

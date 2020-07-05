@@ -1,9 +1,9 @@
 package diagramClass;
 
-public class Asystent extends ObjectPlusPlus {
+public class Assistant extends ObjectPlusPlus {
     private String kwalfikacje;
 
-    public Asystent( String kwalfikacje) {
+    public Assistant(String kwalfikacje) {
         this.kwalfikacje = kwalfikacje;
     }
 

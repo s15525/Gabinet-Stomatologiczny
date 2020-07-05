@@ -1,13 +1,13 @@
 package GUI;
 
-public class KlientTable {
+public class ClientTable {
     String imie;
     String nazwisko;
     String dataurodzenia;
     String pesel;
     String numertelefonu;
     //Klasa sluzaca do wyswietlania zawartosci ekstencji klient
-    public KlientTable(String imie, String nazwisko, String dataurodzenia, String pesel, String numertelefonu) {
+    public ClientTable(String imie, String nazwisko, String dataurodzenia, String pesel, String numertelefonu) {
         this.imie = imie;
         this.nazwisko = nazwisko;
         this.dataurodzenia = dataurodzenia;

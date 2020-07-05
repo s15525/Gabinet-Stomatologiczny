@@ -1,9 +1,9 @@
 package diagramClass;
 
-public class Mezczyzna extends Osoba.Plec {
+public class Man extends Person.Plec {
     private String nazwiskorodoweMatki;
 
-    public Mezczyzna(String nazwiskorodoweMatki) {
+    public Man(String nazwiskorodoweMatki) {
         this.nazwiskorodoweMatki = nazwiskorodoweMatki;
     }
 

@@ -1,8 +1,6 @@
 package GUI;
 
-import diagramClass.Klient;
-import diagramClass.Osoba;
-import javafx.fxml.Initializable;
+import diagramClass.Client;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -20,7 +18,7 @@ import java.util.List;
 public class RegisterClientWindow {
     static boolean klientReturn;
 
-    public static Klient display() {
+    public static Client display() {
 
         Stage window = new Stage();
         window.initModality(Modality.APPLICATION_MODAL);
@@ -77,13 +75,13 @@ public class RegisterClientWindow {
         }
 
         if (klientReturn) {
-            Klient newKlient = new Klient(imie.getText(), nazwisko.getText(), dataurodzenia.getText(), pesel.getText(), phoneNumberList);
+            Client newClient = new Client(imie.getText(), nazwisko.getText(), dataurodzenia.getText(), pesel.getText(), phoneNumberList);
             if (comboBoxPlec.getValue().equals("Mezczyzna")){
-                newKlient.setMezczyzna(informacjeDodatkowe.getText());
+                newClient.setMezczyzna(informacjeDodatkowe.getText());
             }else {
-                newKlient.setKobieta(informacjeDodatkowe.getText());
+                newClient.setKobieta(informacjeDodatkowe.getText());
             }
-            return newKlient;
+            return newClient;
         }else {
             return null;
         }

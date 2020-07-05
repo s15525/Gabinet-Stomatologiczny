@@ -3,7 +3,7 @@ package diagramClass;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Dyzur extends ObjectPlusPlus{
+public class Duty extends ObjectPlusPlus{
     private int id;
     private String dataDyzuru;
     private int czasTrwania;
@@ -12,9 +12,9 @@ public class Dyzur extends ObjectPlusPlus{
     public int[] wizytaIds;
     public int[] stomatologIds;
 
-    private static List<Dyzur> extent = new ArrayList<>();
+    private static List<Duty> extent = new ArrayList<>();
 
-    public Dyzur(int id,String dataDyzuru, int czasTrwania, int liczbaPrzyjetychKlientow, int[] wizytaIds,int[] stomatologIds) {
+    public Duty(int id, String dataDyzuru, int czasTrwania, int liczbaPrzyjetychKlientow, int[] wizytaIds, int[] stomatologIds) {
         extent.add(this);
         this.id = id;
         this.dataDyzuru = dataDyzuru;

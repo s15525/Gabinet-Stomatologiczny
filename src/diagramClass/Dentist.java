@@ -2,7 +2,7 @@ package diagramClass;
 
 import java.util.List;
 
-public class Stomatolog extends ObjectPlusPlus {
+public class Dentist extends ObjectPlusPlus {
     private int id;
     private String dataZatrudnienia;
     private String benefityPracownicze;
@@ -10,7 +10,7 @@ public class Stomatolog extends ObjectPlusPlus {
     private double pensja;
     public int[] dyzurIds;
 
-    public Stomatolog(int id,String benefityPracownicze, List<String> iloscDyplomow, double pensja, int[] dyzurIds) {
+    public Dentist(int id, String benefityPracownicze, List<String> iloscDyplomow, double pensja, int[] dyzurIds) {
         this.id = id;
         this.benefityPracownicze = benefityPracownicze;
         this.iloscDyplomow = iloscDyplomow;

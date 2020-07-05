@@ -1,7 +1,7 @@
 package GUI;
 
-import diagramClass.Wizyta;
-import diagramClass.WizytaExtent;
+import diagramClass.Visit;
+import diagramClass.VisitExtent;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -16,9 +16,9 @@ import javafx.stage.Stage;
 
 import java.util.Calendar;
 
-public class SignAtWizytaWindow {
+public class SignAtVisitWindow {
     public static void displaySingAtWizyta(int idKlient){
-        WizytaExtent wizytaExtent = new WizytaExtent();
+        VisitExtent visitExtent = new VisitExtent();
         Calendar cal = Calendar.getInstance();
 
         Stage window = new Stage();
@@ -46,13 +46,13 @@ public class SignAtWizytaWindow {
 
 
         add.setOnAction(event ->{
-            Wizyta newWizyta = new Wizyta(dzienCombobox.getItems().get(dzienCombobox.getSelectionModel().getSelectedIndex())
+            Visit newVisit = new Visit(dzienCombobox.getItems().get(dzienCombobox.getSelectionModel().getSelectedIndex())
                     ,miesiacCombobox.getItems().get(miesiacCombobox.getSelectionModel().getSelectedIndex()),
                     cal.get(Calendar.YEAR),godzinaRozpoczecia.getText(),godzinaZakonczenia.getText(),
                     0,new int[]{},idKlient);
-            newWizyta.setKoszt();
-            wizytaExtent.addWizyta(newWizyta);
-            wizytaExtent.saveState();
+            newVisit.setKoszt();
+            visitExtent.addWizyta(newVisit);
+            visitExtent.saveState();
             window.close();});
         cancel.setOnAction(event -> window.close());
 

@@ -1,6 +1,6 @@
 package diagramClass;
 
-public class Wizyta {
+public class Visit {
     //atrybut zlozony
     private int dzienMiesiaca;
     private int miesiac;
@@ -16,7 +16,7 @@ public class Wizyta {
     public int[] dyzurIds;
     public int klientIds;
 
-    public Wizyta(int dzienMiesiaca, int miesiac, int rok, String godzina_rozpoczecia, String godzina_zakonczenia, double koszt,int[] dyzurIds,int klientIds) {
+    public Visit(int dzienMiesiaca, int miesiac, int rok, String godzina_rozpoczecia, String godzina_zakonczenia, double koszt, int[] dyzurIds, int klientIds) {
         this.dzienMiesiaca = dzienMiesiaca;
         this.miesiac = miesiac;
         this.rok = rok;

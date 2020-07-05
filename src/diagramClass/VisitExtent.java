@@ -7,24 +7,24 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 
-public class WizytaExtent {
+public class VisitExtent {
     //atrybut klasowy
 //    private static String pathToStateExtent = "C:\\Users\\Lukasz Tolpa\\IdeaProjects\\MASEndProject\\new.csv";
 
     //ekstencja
-    private List<Wizyta> extentWizyta = new ArrayList<>();
+    private List<Visit> extentVisit = new ArrayList<>();
 
-    public void addWizyta(Wizyta wizyta) {
-        extentWizyta.add(wizyta);
+    public void addWizyta(Visit visit) {
+        extentVisit.add(visit);
     }
 
-    public void removeWizyta(Wizyta wizyta) {
-        extentWizyta.add(wizyta);
+    public void removeWizyta(Visit visit) {
+        extentVisit.add(visit);
     }
 
     public void showWizytaExtent() {
-        System.out.println(Wizyta.class.getName());
-        extentWizyta.forEach(System.out::println);
+        System.out.println(Visit.class.getName());
+        extentVisit.forEach(System.out::println);
     }
 
     //ekstencja trwalosc
@@ -36,8 +36,8 @@ public class WizytaExtent {
             Class.forName(myDriver);
             Connection conn = DriverManager.getConnection(myUrl, "root", "Admin123@");
 
-            for (Wizyta wizyta :
-                    extentWizyta) {
+            for (Visit visit :
+                    extentVisit) {
                 // the mysql insert statement
                 String query = " insert into Wizyta (`date`, `godzina_rozpoczecia`, " +
                         "`godzina_zakonczenia`, `koszt`, `IdDyzury`,`IdKlient`)"
@@ -45,12 +45,12 @@ public class WizytaExtent {
 
                 // create the mysql insert preparedstatement
                 PreparedStatement preparedStmt = conn.prepareStatement(query);
-                preparedStmt.setString(1, wizyta.getDataWizyty());
-                preparedStmt.setString(2, wizyta.getGodzina_rozpoczecia());
-                preparedStmt.setString(3, wizyta.getGodzina_zakonczenia());
-                preparedStmt.setDouble(4, wizyta.getKoszt());
+                preparedStmt.setString(1, visit.getDataWizyty());
+                preparedStmt.setString(2, visit.getGodzina_rozpoczecia());
+                preparedStmt.setString(3, visit.getGodzina_zakonczenia());
+                preparedStmt.setDouble(4, visit.getKoszt());
                 preparedStmt.setString(5, "");
-                preparedStmt.setInt(6, wizyta.getKlientIds());
+                preparedStmt.setInt(6, visit.getKlientIds());
 
                 // execute the preparedstatement
                 preparedStmt.execute();
@@ -85,7 +85,7 @@ public class WizytaExtent {
                double koszt = rs.getDouble(4);
                int idKlient = rs.getInt(5);
                String[] tab = data.split("\\.");
-               extentWizyta.add(new Wizyta(Integer.parseInt(tab[0]),Integer.parseInt(tab[1]),
+               extentVisit.add(new Visit(Integer.parseInt(tab[0]),Integer.parseInt(tab[1]),
                        Integer.parseInt(tab[2]),godzina_rozpoczecia,godzina_zakonczenia,koszt,new int[]{},idKlient));
             }
             // execute the preparedstatement
@@ -98,10 +98,10 @@ public class WizytaExtent {
         }
     }
 
-    public Wizyta findWizytyKlient(int id) throws Exception {
-        for(Wizyta wizyta : extentWizyta) {
-            if(wizyta.klientIds == id) {
-                return wizyta;
+    public Visit findWizytyKlient(int id) throws Exception {
+        for(Visit visit : extentVisit) {
+            if(visit.klientIds == id) {
+                return visit;
             }
         }
         throw new Exception("Unable to find a Wizyta with the id = " + id);

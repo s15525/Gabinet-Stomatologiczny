@@ -1,7 +1,7 @@
 package GUI;
 
-import diagramClass.Klient;
-import diagramClass.KlientExtent;
+import diagramClass.Client;
+import diagramClass.ClientExtent;
 import javafx.application.Application;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -17,11 +17,11 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 public class MainWindow extends Application {
-    private TableView<KlientTable> klientTableView = new TableView<KlientTable>();
+    private TableView<ClientTable> klientTableView = new TableView<ClientTable>();
     private Button wyswietlWizyty = new Button("Wyswietl szczegóły wizyty");
-    private final ObservableList<KlientTable> data = FXCollections.observableArrayList();
+    private final ObservableList<ClientTable> data = FXCollections.observableArrayList();
     private final HBox hb = new HBox();
-    private KlientExtent klientExtentExist = new KlientExtent();
+    private ClientExtent clientExtentExist = new ClientExtent();
 
     public static void main(String[] args) {
         launch(args);
@@ -41,30 +41,30 @@ public class MainWindow extends Application {
 
         TableColumn imie = new TableColumn("imie");
         imie.setMinWidth(150);
-        imie.setCellValueFactory(new PropertyValueFactory<KlientTable, String>("imie"));
+        imie.setCellValueFactory(new PropertyValueFactory<ClientTable, String>("imie"));
 
         TableColumn nazwisko = new TableColumn("nazwisko");
         nazwisko.setMinWidth(150);
-        nazwisko.setCellValueFactory(new PropertyValueFactory<KlientTable, String>("nazwisko"));
+        nazwisko.setCellValueFactory(new PropertyValueFactory<ClientTable, String>("nazwisko"));
 
         TableColumn dataUrodzenia = new TableColumn("dataurodzenia");
         dataUrodzenia.setMinWidth(150);
-        dataUrodzenia.setCellValueFactory(new PropertyValueFactory<KlientTable, String>("dataurodzenia"));
+        dataUrodzenia.setCellValueFactory(new PropertyValueFactory<ClientTable, String>("dataurodzenia"));
 
         TableColumn pesel  = new TableColumn("pesel");
         pesel.setMinWidth(150);
-        pesel.setCellValueFactory(new PropertyValueFactory<KlientTable, String>("pesel"));
+        pesel.setCellValueFactory(new PropertyValueFactory<ClientTable, String>("pesel"));
 
         TableColumn nrtelefonu  = new TableColumn("numerTelefonu");
         nrtelefonu.setMinWidth(150);
-        nrtelefonu.setCellValueFactory(new PropertyValueFactory<KlientTable, String>("numertelefonu"));
+        nrtelefonu.setCellValueFactory(new PropertyValueFactory<ClientTable, String>("numertelefonu"));
 
 
-        klientExtentExist.getState();
+        clientExtentExist.getState();
 
-        for (Klient k:
-             klientExtentExist.getExtentKlient()) {
-            data.add(new KlientTable(k.getImie(),k.getNazwisko(),k.getDataurodzenia(),k.getPesel(),k.getNumeryTelefonu()));
+        for (Client k:
+             clientExtentExist.getExtentClient()) {
+            data.add(new ClientTable(k.getImie(),k.getNazwisko(),k.getDataurodzenia(),k.getPesel(),k.getNumeryTelefonu()));
         }
 
 
@@ -83,19 +83,19 @@ public class MainWindow extends Application {
         addKlientButton.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                Klient newKlient = RegisterClientWindow.display();
-                if (newKlient != null) {
-                    KlientExtent klientExtentNew = new KlientExtent();
-                    klientExtentNew.addKlient(newKlient);
-                    klientExtentNew.saveState();
-                    KlientTable klientTable = new KlientTable(newKlient.getImie(), newKlient.getNazwisko(), newKlient.getDataurodzenia(), newKlient.getPesel(), newKlient.getNumeryTelefonu());
-                    data.add(klientTable);
+                Client newClient = RegisterClientWindow.display();
+                if (newClient != null) {
+                    ClientExtent clientExtentNew = new ClientExtent();
+                    clientExtentNew.addKlient(newClient);
+                    clientExtentNew.saveState();
+                    ClientTable clientTable = new ClientTable(newClient.getImie(), newClient.getNazwisko(), newClient.getDataurodzenia(), newClient.getPesel(), newClient.getNumeryTelefonu());
+                    data.add(clientTable);
                     if (PeselCheckWindow.peselCheckDisplay()){
                         ProgressBarPodtwierdzenie.processBarDisplay();
-                        SignAtWizytaWindow.displaySingAtWizyta(klientExtentNew.getIdKlient(newKlient.getImie(),newKlient.getNazwisko()));
+                        SignAtVisitWindow.displaySingAtWizyta(clientExtentNew.getIdKlient(newClient.getImie(), newClient.getNazwisko()));
                     }else {
                         Alert.alertDisplay("Uwaga pacjent nie posiada ubezpieczenia zdrowotnego");
-                        SignAtWizytaWindow.displaySingAtWizyta(klientExtentNew.getIdKlient(newKlient.getImie(),newKlient.getNazwisko()));
+                        SignAtVisitWindow.displaySingAtWizyta(clientExtentNew.getIdKlient(newClient.getImie(), newClient.getNazwisko()));
                     }
                 }
             }
@@ -103,10 +103,10 @@ public class MainWindow extends Application {
         });
 
         wyswietlWizyty.setOnAction(event -> {
-            klientExtentExist.getState();
+            clientExtentExist.getState();
             try {
-                KlientTable klientTable = klientTableView.getItems().get(klientTableView.getSelectionModel().getFocusedIndex());
-                ShowWizytaWindow.showWizytaDisplay(klientExtentExist.getIdKlient(klientTable.getImie(),klientTable.getNazwisko()));
+                ClientTable clientTable = klientTableView.getItems().get(klientTableView.getSelectionModel().getFocusedIndex());
+                ShowVisitWindow.showWizytaDisplay(clientExtentExist.getIdKlient(clientTable.getImie(), clientTable.getNazwisko()));
             } catch (Exception e) {
                Alert.alertDisplay("Klient nie jest zapisany na zadana wizyte");
             }

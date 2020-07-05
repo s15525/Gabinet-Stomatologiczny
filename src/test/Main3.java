@@ -1,42 +1,42 @@
 package test;
 
-import diagramClass.Gosc;
-import diagramClass.Klient;
-import diagramClass.Osoba;
-import diagramClass.Pracownik;
+import diagramClass.Guest;
+import diagramClass.Client;
+import diagramClass.Person;
+import diagramClass.Worker;
 
 import java.util.ArrayList;
 
 public class Main3 {
     public static void main(String[] args) {
         //Dziedziczenie overlapping
-        Pracownik martaSekrektarka = new Pracownik(123, 1997, 200.0);
-        Pracownik ewaAsystent = new Pracownik(321, "Zarzadzanie");
-        Pracownik martynaStomatolog = new Pracownik(453, 1, "Multisport", new ArrayList<String>() {{
+        Worker martaSekrektarka = new Worker(123, 1997, 200.0);
+        Worker ewaAsystent = new Worker(321, "Zarzadzanie");
+        Worker martynaStomatolog = new Worker(453, 1, "Multisport", new ArrayList<String>() {{
             add("Stomatologia ogolna");
         }}, 300.0, new int[]{1});
 
         //Dziedziczenie dynamiczne
-        Osoba marek = new Gosc("Marek", "Pawlowski", "18.12.2000");
-        Osoba kacper = new Gosc("Marek", "Pawlowski", "18.12.2000");
+        Person marek = new Guest("Marek", "Pawlowski", "18.12.2000");
+        Person kacper = new Guest("Marek", "Pawlowski", "18.12.2000");
         System.out.println(marek);
 
-        marek = new Klient(marek, "23.08.1997", "977997979797", new ArrayList<>() {{
+        marek = new Client(marek, "23.08.1997", "977997979797", new ArrayList<>() {{
             add("7878878787");
         }});
-        kacper = new Klient(marek, "23.08.1997", "977997979797", new ArrayList<>() {{
+        kacper = new Client(marek, "23.08.1997", "977997979797", new ArrayList<>() {{
             add("7878878787");
         }});
         System.out.println(marek);
         //Dziedziczenie wieloaspektowe
-        Osoba marta = new Gosc("Marta", "Martinczuk", "18.11.2000");
+        Person marta = new Guest("Marta", "Martinczuk", "18.11.2000");
 
         marek.setMezczyzna("Ziolko");
         marta.setKobieta("Golebiewska");
 
         //Polimorficzne wywolanie metod
         //klient
-        Osoba vanessa = new Gosc("Vanessa", "Pawlowski", "18.12.2000");
+        Person vanessa = new Guest("Vanessa", "Pawlowski", "18.12.2000");
         System.out.println(vanessa.getData());
         //gosc
         System.out.println(marek.getData());

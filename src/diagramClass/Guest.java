@@ -5,21 +5,21 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Gosc extends Osoba {
+public class Guest extends Person {
     //ograniczenie atrybutu
     private String dataOdwiedzin;
     DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd.MM.yyyy");
     LocalDateTime now = LocalDateTime.now();
-    private static List<Gosc> extent = new ArrayList<>();
+    private static List<Guest> extent = new ArrayList<>();
 
-    public Gosc(String imie, String nazwisko, String dataOdwiedzin) {
+    public Guest(String imie, String nazwisko, String dataOdwiedzin) {
         super(imie, nazwisko);
         this.dataOdwiedzin = dataOdwiedzin;
         extent.add(this);
     }
 
-    public Gosc(Osoba osoba, String dataOdwiedzin) {
-        super(osoba.imie, osoba.nazwisko);
+    public Guest(Person person, String dataOdwiedzin) {
+        super(person.imie, person.nazwisko);
         this.dataOdwiedzin = dataOdwiedzin;
         extent.add(this);
     }

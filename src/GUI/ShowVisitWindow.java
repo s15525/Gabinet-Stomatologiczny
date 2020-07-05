@@ -1,7 +1,7 @@
 package GUI;
 
-import diagramClass.Wizyta;
-import diagramClass.WizytaExtent;
+import diagramClass.Visit;
+import diagramClass.VisitExtent;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -12,12 +12,12 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
-public class ShowWizytaWindow {
+public class ShowVisitWindow {
 
     public static void showWizytaDisplay( int idKlienta) throws Exception {
-        WizytaExtent wizytaExtent = new WizytaExtent();
-        wizytaExtent.getState();
-        Wizyta wizyta = wizytaExtent.findWizytyKlient(idKlienta);
+        VisitExtent visitExtent = new VisitExtent();
+        visitExtent.getState();
+        Visit visit = visitExtent.findWizytyKlient(idKlienta);
         Stage window = new Stage();
         window.initModality(Modality.APPLICATION_MODAL);
         window.setTitle("Wizyta klienta");
@@ -26,16 +26,16 @@ public class ShowWizytaWindow {
 
         Label data = new Label("Data wizyty");
         Label valueData = new Label();
-        valueData.setText(wizyta.getDataWizyty());
+        valueData.setText(visit.getDataWizyty());
         Label godzinaRozpoczecia = new Label("Godzina Rozpoczecia");
         Label valueGodzinaRozpoczecia = new Label();
-        valueGodzinaRozpoczecia.setText(wizyta.getGodzina_rozpoczecia());
+        valueGodzinaRozpoczecia.setText(visit.getGodzina_rozpoczecia());
         Label godzinaZakonczenia = new Label("Godzina Zakonczenia");
         Label valueGodzinaZakonczenia = new Label();
-        valueGodzinaZakonczenia.setText(wizyta.getGodzina_zakonczenia());
+        valueGodzinaZakonczenia.setText(visit.getGodzina_zakonczenia());
         Label kwota = new Label("Kwota");
         Label valueKwota = new Label();
-        valueKwota.setText(String.valueOf(wizyta.getKoszt()));
+        valueKwota.setText(String.valueOf(visit.getKoszt()));
         Button button = new Button("Ok");
 
 

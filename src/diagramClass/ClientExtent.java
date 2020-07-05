@@ -9,24 +9,24 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class KlientExtent {
-    private List<Klient> extentKlient = new ArrayList<>();
+public class ClientExtent {
+    private List<Client> extentClient = new ArrayList<>();
 
-    public void addKlient(Klient klient) {
-        extentKlient.add(klient);
+    public void addKlient(Client client) {
+        extentClient.add(client);
     }
 
-    public void removeKlient(Klient klient) {
-        extentKlient.add(klient);
+    public void removeKlient(Client client) {
+        extentClient.add(client);
     }
 
     public void showKlientExtent() {
-        System.out.println(Wizyta.class.getName());
-        extentKlient.forEach(System.out::println);
+        System.out.println(Visit.class.getName());
+        extentClient.forEach(System.out::println);
     }
 
-    public List<Klient> getExtentKlient() {
-        return extentKlient;
+    public List<Client> getExtentClient() {
+        return extentClient;
     }
 
     //ekstencja trwalosc
@@ -38,8 +38,8 @@ public class KlientExtent {
             Class.forName(myDriver);
             Connection conn = DriverManager.getConnection(myUrl, "root", "Admin123@");
 
-            for (Klient klient :
-                    extentKlient) {
+            for (Client client :
+                    extentClient) {
                 // the mysql insert statement
                 String query = " insert into Klient (`imie`, `nazwisko`, `dataUrodzenia`,`pesel`,`nrTelefonu`,`plec`,`informacjaDodatkowa`)"
                         + " values (?, ?, ?, ?, ?, ?, ?)";
@@ -47,13 +47,13 @@ public class KlientExtent {
                 // create the mysql insert preparedstatement
                 PreparedStatement preparedStmt = conn.prepareStatement(query);
 
-                preparedStmt.setString(1, klient.getImie());
-                preparedStmt.setString(2, klient.getNazwisko());
-                preparedStmt.setString(3, klient.getDataurodzenia());
-                preparedStmt.setString(4, klient.getPesel());
-                preparedStmt.setString(5, klient.getNumeryTelefonu());
-                preparedStmt.setString(6, klient.getPlecKto());
-                preparedStmt.setString(7, klient.getInformacjaDodatkowa());
+                preparedStmt.setString(1, client.getImie());
+                preparedStmt.setString(2, client.getNazwisko());
+                preparedStmt.setString(3, client.getDataurodzenia());
+                preparedStmt.setString(4, client.getPesel());
+                preparedStmt.setString(5, client.getNumeryTelefonu());
+                preparedStmt.setString(6, client.getPlecKto());
+                preparedStmt.setString(7, client.getInformacjaDodatkowa());
 
                 // execute the preparedstatement
                 preparedStmt.execute();
@@ -89,15 +89,15 @@ public class KlientExtent {
 
                 String[] tab = nrTelefonu.split("\n");
 
-                Klient klient = new Klient(imie,nazwisko,dataUrodzenia,pesel,new ArrayList<>(Arrays.asList(tab)));
+                Client client = new Client(imie,nazwisko,dataUrodzenia,pesel,new ArrayList<>(Arrays.asList(tab)));
 
                 if (plec.equals("kobieta")){
-                    klient.setKobieta(informacjaDodatkowa);
+                    client.setKobieta(informacjaDodatkowa);
                 }else{
-                    klient.setMezczyzna(informacjaDodatkowa);
+                    client.setMezczyzna(informacjaDodatkowa);
                 }
 
-                extentKlient.add(klient);
+                extentClient.add(client);
             }
             // execute the preparedstatement
 

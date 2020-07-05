@@ -1,11 +1,9 @@
 package diagramClass;
 
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
-public class Klient extends Osoba {
+public class Client extends Person {
     //Dziedziczenie dynamiczne
     public String dataurodzenia;
     //unique
@@ -13,9 +11,9 @@ public class Klient extends Osoba {
     //atrybut powtarzalny
     public List<String> numeryTelefonu;
     private List<Zab> zabs = new ArrayList<>();
-    private static List<Klient> extent = new ArrayList<>();
+    private static List<Client> extent = new ArrayList<>();
 
-    public Klient(String imie, String nazwisko, String dataurodzenia, String pesel, List<String> numeryTelefonu) {
+    public Client(String imie, String nazwisko, String dataurodzenia, String pesel, List<String> numeryTelefonu) {
         super(imie, nazwisko);
         this.dataurodzenia = dataurodzenia;
         this.numeryTelefonu = numeryTelefonu;
@@ -24,8 +22,8 @@ public class Klient extends Osoba {
         checkPeselExistsInExtent(pesel);
     }
 
-    public Klient(Osoba osoba, String dataurodzenia, String pesel, List<String> numeryTelefonu) {
-        super(osoba.imie, osoba.nazwisko);
+    public Client(Person person, String dataurodzenia, String pesel, List<String> numeryTelefonu) {
+        super(person.imie, person.nazwisko);
         this.dataurodzenia = dataurodzenia;
         this.numeryTelefonu = numeryTelefonu;
         this.pesel = pesel;
@@ -114,7 +112,7 @@ public class Klient extends Osoba {
     }
 
     public void showKlientExtent() {
-        System.out.println(Klient.class.getName());
+        System.out.println(Client.class.getName());
         extent.forEach(System.out::println);
     }
 

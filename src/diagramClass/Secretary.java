@@ -1,10 +1,10 @@
 package diagramClass;
 
-public class Sekretarka extends ObjectPlusPlus {
+public class Secretary extends ObjectPlusPlus {
     private int rokRozpoczeciaPracy;
     private double pensja;
 
-    public Sekretarka(int rokRozpoczeciaPracy, double pensja) {
+    public Secretary(int rokRozpoczeciaPracy, double pensja) {
         this.rokRozpoczeciaPracy = rokRozpoczeciaPracy;
         this.pensja = pensja;
     }
